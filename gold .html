@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 尾牙頭獎</title>
+    <style>
+        body { background: radial-gradient(circle, #440000 0%, #000 100%); color: #fff; font-family: "Microsoft JhengHei", sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        .main-ui { text-align: center; z-index: 10; }
+        .theme-title { font-size: 1.5rem; color: #ffd700; letter-spacing: 5px; margin-bottom: 20px; font-weight: bold; }
+        #countdown { font-size: 8rem; font-weight: 900; color: #ffd700; text-shadow: 0 0 30px #ffd700; }
+        #result { display: none; animation: pop 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.49); }
+        .icon-box { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 6rem; margin-bottom: 10px; }
+        .amount { font-size: 5rem; font-weight: 900; color: #fff; text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700; }
+        .hint { font-size: 1.8rem; margin-top: 20px; color: #ffd700; text-shadow: 0 0 10px #000; }
+        @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="main-ui">
+        <div class="theme-title">🧧 2026 尾牙大抽獎 🧧</div>
+        <div id="intro"><div style="font-size: 1.5rem;">即將揭曉頭獎</div><div id="countdown">3</div></div>
+        <div id="result">
+            <div class="icon-box">🏆</div>
+            <div style="font-size: 2rem; color: #ffd700; font-weight: bold;">尊榮頭獎</div>
+            <div class="amount">$15,000</div>
+            <div class="hint">👑 終極贏家！今晚你就是傳奇！ 👑</div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        let count = 3;
+        const timer = setInterval(() => {
+            count--;
+            if(count > 0) document.getElementById('countdown').innerText = count;
+            else { clearInterval(timer); showResult(); }
+        }, 1000);
+        function showResult() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            const colors = ['#ffd700', '#ffffff', '#b8860b']; // 純金、白、深金
+            confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 }, colors: colors });
+            setTimeout(() => { confetti({ particleCount: 150, angle: 60, spread: 55, origin: { x: 0 }, colors: colors }); confetti({ particleCount: 150, angle: 120, spread: 55, origin: { x: 1 }, colors: colors }); }, 400);
+        }
+    </script>
+</body>
+</html>

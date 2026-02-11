@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 尾牙二獎</title>
+    <style>
+        /* 背景調整為較明亮的深紅漸層，增加層次感 */
+        body { 
+            background: radial-gradient(circle, #4a0000 0%, #1a0000 100%); 
+            color: #fff; 
+            font-family: "Microsoft JhengHei", sans-serif; 
+            margin: 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            overflow: hidden; 
+        }
+        .main-ui { text-align: center; }
+        .theme-title { font-size: 1.5rem; color: #ffd700; letter-spacing: 5px; margin-bottom: 20px; font-weight: bold; }
+        #countdown { font-size: 8rem; font-weight: 900; color: #ffd700; }
+        
+        #result { display: none; animation: slideUp 0.8s ease-out; }
+        
+        .icon-box { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 5rem; margin-bottom: 10px; }
+        
+        /* 調整金額顏色為明亮的寶石紅，並強化發光效果 */
+        .amount { 
+            font-size: 5rem; 
+            font-weight: 900; 
+            color: #ff3344; /* 改為較明亮但飽和的亮紅色 */
+            /* 眩光疊加：使用金黃與亮紅交織，增加通透感 */
+            text-shadow: 
+                0 0 10px #ffffff, 
+                0 0 20px #ff3344, 
+                0 0 40px #ff3344, 
+                0 0 70px #ffd700;
+            margin: 5px 0;
+            letter-spacing: 2px;
+        }
+        
+        .hint { font-size: 1.6rem; margin-top: 20px; color: #ffffff; text-shadow: 1px 1px 10px rgba(255,215,0,0.5); }
+
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="main-ui">
+        <div class="theme-title">🧧 2026 尾牙大抽獎 🧧</div>
+        <div id="intro">
+            <div style="font-size: 1.5rem; margin-bottom: 10px;">即將揭曉大獎</div>
+            <div id="countdown">3</div>
+        </div>
+        <div id="result">
+            <div class="icon-box">🎁</div>
+            <div style="font-size: 1.8rem; color: #ffd700; font-weight: bold; text-shadow: 0 0 10px #ff3344;">紅包二獎</div>
+            <div class="amount">$10,000</div>
+            <div class="hint">✨ 太強了！萬元大紅包帶回家！ ✨</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        let count = 3;
+        const timer = setInterval(() => {
+            count--;
+            if(count > 0) document.getElementById('countdown').innerText = count;
+            else { clearInterval(timer); showResult(); }
+        }, 1000);
+
+        function showResult() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            
+            // 彩帶顏色同步更新為亮紅與純金
+            confetti({ 
+                particleCount: 250, 
+                spread: 100, 
+                origin: { y: 0.6 }, 
+                colors: ['#ff3344', '#ffd700', '#ff8800', '#ffffff'] 
+            });
+        }
+    </script>
+</body>
+</html>

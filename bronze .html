@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 尾牙三獎</title>
+    <style>
+        body { background: radial-gradient(circle, #221100 0%, #000 100%); color: #fff; font-family: "Microsoft JhengHei", sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        .main-ui { text-align: center; }
+        .theme-title { font-size: 1.5rem; color: #ffd700; letter-spacing: 5px; margin-bottom: 20px; font-weight: bold; }
+        #countdown { font-size: 8rem; font-weight: 900; color: #ffd700; }
+        
+        #result { display: none; animation: bounceIn 0.8s ease; }
+        
+        /* 調整與其他獎項一致的圖示區塊高度 */
+        .icon-box { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 5rem; margin-bottom: 10px; }
+        
+        /* 調整金額大小為 5rem，並改為 900 字重以對齊頭/貳獎 */
+        .amount { 
+            font-size: 5rem; 
+            font-weight: 900; 
+            color: #ffa500; 
+            text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff8800; /* 增加一層陰影增加厚度 */
+            margin: 5px 0;
+            letter-spacing: 2px;
+        }
+        
+        /* 調整提示文字大小與間距 */
+        .hint { font-size: 1.6rem; margin-top: 20px; color: #fff; }
+
+        @keyframes bounceIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <div class="main-ui">
+        <div class="theme-title">🧧 2026 尾牙大抽獎 🧧</div>
+        <div id="intro">
+            <div style="font-size: 1.5rem; margin-bottom: 10px;">即將揭曉大獎</div>
+            <div id="countdown">3</div>
+        </div>
+        <div id="result">
+            <div class="icon-box">🎉</div>
+            <div style="font-size: 1.8rem; color: #ffa500; font-weight: bold;">開運三獎</div>
+            <div class="amount">$8,000</div>
+            <div class="hint">✨ 恭喜！開運金 8,000 元入袋！ ✨</div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        let count = 3;
+        const timer = setInterval(() => {
+            count--;
+            if(count > 0) document.getElementById('countdown').innerText = count;
+            else { clearInterval(timer); showResult(); }
+        }, 1000);
+        
+        function showResult() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            // 稍微增加彩帶數量，讓整體氣勢與前兩獎對齊
+            confetti({ 
+                particleCount: 200, 
+                spread: 80, 
+                origin: { y: 0.6 }, 
+                colors: ['#ffa500', '#ffcc00', '#ffffff'] 
+            });
+        }
+    </script>
+</body>
+</html>
